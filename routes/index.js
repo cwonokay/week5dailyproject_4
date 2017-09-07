@@ -6,7 +6,7 @@ let obj = {};
 let invalid = "";
 let user = { username: "cornelia", password: "keyskeys"};
 router.get("/", function(req, res) {
-  res.render("login");
+  res.render("login" , obj);
 });
 
 
@@ -33,6 +33,7 @@ router.post("/", function(req, res) {
       req.session.token = "afs29628";
       res.redirect("/results");
     }else{
+
       obj.invalid = "invalid user name or password";
       res.redirect("/")
     }
@@ -51,9 +52,10 @@ router.post("/", function(req, res) {
 };
 
 
-  router.get("/", authenticate, function(req, res) {
-    res.render("login" ,  obj);
-  });
+  // router.get("/", authenticate, function(req, res) {
+  //   console.log(obj);
+  //   res.render("login" ,  );
+  // });
 
   router.get("/results", function(req, res) {
     if (req.session.token) {
